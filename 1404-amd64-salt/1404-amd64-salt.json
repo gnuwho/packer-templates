@@ -1,0 +1,92 @@
+{
+	"description": "ubuntu LTS 1404 amd64 server build, minimal salt install",
+	"min_packer_version": "0.4.0",
+	"builders": [
+		{
+			"boot_command": [
+				"<esc><wait>",
+				"<esc><wait>",
+				"<enter><wait>",
+				"/install/vmlinuz<wait>",
+				" auto<wait>",
+				" console-setup/ask_detect=false<wait>",
+				" console-setup/layoutcode=us<wait>",
+				" console-setup/modelcode=pc105<wait>",
+				" debconf/frontend=noninteractive<wait>",
+				" debian-installer=en_US<wait>",
+				" fb=false<wait>",
+				" initrd=/install/initrd.gz<wait>",
+				" kbd-chooser/method=us<wait>",
+				" keyboard-configuration/layout=USA<wait>",
+				" keyboard-configuration/variant=USA<wait>",
+				" locale=en_US<wait>",
+				" netcfg/get_hostname=ubuntu-1204<wait>",
+				" netcfg/get_domain=vagrantup.com<wait>",
+				" noapic<wait>",
+				" preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+				" -- <wait>",
+				"<enter><wait>"
+			],
+			"boot_wait": "15s",
+			"disk_size": 20000,
+			"guest_additions_path": "VBoxGuestAdditions_{{ .Version }}.iso",
+			"guest_os_type": "Ubuntu_64",
+			"headless": true,
+			"http_directory": "http",
+			"iso_checksum": "ababb88a492e08759fddcf4f05e5ccc58ec9d47fa37550d63931d0a5fa4f7388",
+			"iso_checksum_type": "sha256",
+			"shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+			"ssh_password": "vagrant",
+			"ssh_port": 22,
+			"ssh_username": "vagrant",
+			"ssh_wait_timeout": "300m",
+			"type": "virtualbox-iso",
+			"vboxmanage": [
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"cpus",
+					"1"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"memory",
+					"1024"
+				]
+			],
+			"virtualbox_version_file": ".vbox_version",
+			"vm_name": "1404-amd64-salt"
+		}
+	],
+	"post-processors": [
+		{
+			"compression_level": 9,
+			"keep_input_artifact": false,
+			"only": [
+				"virtualbox-iso"
+			],
+			"output": ":out_dir/box/:build_name.box",
+			"type": "vagrant"
+		}
+	],
+	"provisioners": [
+		{
+			"execute_command": ":commands_src_dir/execute.command",
+			"only": [
+				"virtualbox-iso"
+			],
+			"scripts": [
+				":scripts_dir/setup.sh",
+				":scripts_dir/vagrant.sh",
+				":scripts_dir/sudoers.sh",
+				":scripts_dir/cleanup.sh"
+			],
+			"type": "shell-scripts"
+		},
+		{
+			"local_state_tree": "~/code/saltstack/saltbase/salt",
+			"type": "salt-masterless"
+		}
+	]
+}
