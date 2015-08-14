@@ -1,0 +1,63 @@
+{
+	"description": "minimal centos 6 x86_64 virtualbox vagrant build",
+	"min_packer_version": "0.7.0",
+	"builders": [
+		{
+			"boot_command": [
+				"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+			],
+			"boot_wait": "5s",
+			"disk_size": 40000,
+			"guest_os_type": "RedHat_64",
+			"headless": true,
+			"http_directory": "http",
+			"iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
+			"iso_checksum_type": "sha256",
+			"iso_url": "http://mirror.net.cen.ct.gov/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
+			"output_directory": "../packer-boxes/centos6-64-vbox-vagrant",
+			"shutdown_command": "echo 'vagrant'|sudo -S shutdown -t5 -h now",
+			"ssh_password": "vagrant",
+			"ssh_port": 22,
+			"ssh_username": "vagrant",
+			"ssh_wait_timeout": "60m",
+			"type": "virtualbox-iso",
+			"vboxmanage": [
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--cpus",
+					"1"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--memory",
+					"1024"
+				]
+			],
+			"virtualbox_version_file": ".vbox_version",
+			"vm_name": "centos6-64-vbox-vagrant"
+		}
+	],
+	"post-processors": [
+		{
+			"compression_level": 9,
+			"keep_input_artifact": false,
+			"output": "centos6-64-vbox-vagrant.box",
+			"type": "vagrant"
+		}
+	],
+	"provisioners": [
+		{
+			"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+			"scripts": [
+				"shell/setup",
+				"shell/sudoers",
+				"shell/user_vagrant",
+				"shell/vbox",
+				"shell/cleanup"
+			],
+			"type": "shell"
+		}
+	]
+}
