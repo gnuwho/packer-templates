@@ -8,7 +8,7 @@ Please see each template for details.
 ## Prerequisites
 [Packer](https://packer.io) must be installed to use these templates.
 
-Any other software that the templates depend on: e.g. for templates using the `virtualbox-iso` provisioner, you must have [Virtualbox](https://www.virtualbox.iso) installed.
+Any other software that the templates depend on must also be installed: e.g. for templates using the `virtualbox-iso` provisioner, you must have [Virtualbox](https://www.virtualbox.iso) installed.
 
 ## Usage
 Copy the repository:
