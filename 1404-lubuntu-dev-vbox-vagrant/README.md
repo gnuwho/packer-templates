@@ -19,27 +19,27 @@ Start with [vagrant](https://vagrantup.com):
 ## Vagrantfile
 A basic `Vagrantfile` is included with minimal settings.
 
-The `vm.synced_folder` is set to share the host machine's `../data` as the guest machine's `/vagrant_data`.
-
 This image uses 2048MB of RAM. If this is too much or too little, modify it in the `Vagrantfile`:
 
     config.vm.provider "virtualbox" do |v|
       vb.gui = true
-      vb.memory = "512"
+      vb.memory = "2048"
     end  
 
 This image also has 128MB of video memory and 3D accelaration enabled. This can be modified in the `config.vm.provider` section too.
  
 Since this is a desktop image, Vagrant's `vb.gui` setting is set to `true`.
 
-For a complete reference, please see the online documentation at https://docs.vagrantup.com.
+To sync a folder between the host machine and the guest, uncomment the `config.vm.synced_folder` setting and set to the appropriate values.
+
+For a complete reference, please see the online documentation at https://docs.vagrantup.com/v2. 
 
 ## Installed software
-This is only the software explicitely installed by this template. Unless noted otherwise, it does not include any software that is already installed by the distro or `lubuntu`.  
+This is only the software explicitly installed by this template. Unless noted otherwise, it does not include any software that is already installed by the distro or `lubuntu`.  
 
 ### General
 ```  
-* bzip
+* bzip2
 * curl
 * git
 * rsync
