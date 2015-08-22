@@ -29,4 +29,8 @@ This image uses 1024MB of RAM. If this is too much or too little, modify it in t
       vb.memory = "512"
     end  
 
-For a complete reference, please see the online documentation at https://docs.vagrantup.com. 
+The `vb.memory` setting is currently commented out in the supplied `Vagrantfile`.
+
+To sync a folder between the host machine and the guest, uncomment the `config.vm.synced_folder` setting and set to the appropriate values.
+
+For a complete reference, please see the online documentation at https://docs.vagrantup.com/v2. 
