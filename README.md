@@ -20,5 +20,19 @@ Create the desired artifact:
     cd packer-templates ubuntu-64-vbox-vagrant
     packer build ubuntu-64-vbox-vagrant.json
 
+
+## Vagrant
+For templates that use the [Vagrant](https://vagrantup.com) post-processor, a simple Vagrantfile is included. 
+
+If you wish to sync folders between the Host machine and the Guest, uncomment the `config.vm.synced_folder` setting and set appropriately. By default this setting has bee configured to shares the hosts `../data` directory with the guest's `/vagrant_data`.
+
+For desktop images the `vb.gui` setting has been set to `true`; otherwise the value is set to `false`. 
+
+Please refer to [Vagrant's documentation](https://docs.vagrantup.com/v2/) for more information. 
+
 ## Notes
-These templates break [Vagrant](https://vagrantup.com) conventions for hostname and RAM. The template name is used as the host name for the box it creates. Instead of 512MB of ram, these boxes start with 1024MB. 
+These templates break [Vagrant](https://vagrantup.com) conventions for hostname and RAM. The template name is used as the host name for the box it creates. Instead of 512MB of RAM, these boxes start with 1024MB; desktop images are configured with 2048MB of RAM, 128MB of VRAM, and with 3D accelaration enabled.
+
+Please refer to each Packer template's `README`, if there is one, for more specific information about that particular template.
+
+ 
