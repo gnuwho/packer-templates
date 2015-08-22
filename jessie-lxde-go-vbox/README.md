@@ -11,6 +11,8 @@ At time of template generation 8.1 was the current release.
 Create the artifact:
 
     packer build jessie-lxde-go-vbox
+    
+This will create a Virtualbox image in the `output_directory`.
 
 ### Virtualbox
 The resulting image is an `ovf` file. Using Virtualbox, import the `jessie-lxde-go-vbox.ovf` file. After import, start the VM.
@@ -67,4 +69,3 @@ The `GOPATH` is set to `/home/vagrant/code/go`.
 For debugging, Derek Parker's [delve](https://github.com/derekparker/delve) has been installed.
 
 For more information about Go, please go to the [Go website](https://golang.org).
-
