@@ -29,7 +29,9 @@ This image uses 1024MB of RAM. If this is too much or too little, modify it in t
       vb.memory = "512"
     end  
 
-For a complete reference, please see the online documentation at https://docs.vagrantup.com.
+To sync a folder between the host machine and the guest, uncomment the `config.vm.synced_folder` setting and set to the appropriate values.
+
+For a complete reference, please see the online documentation at https://docs.vagrantup.com/v2.
 
 ## ISO Image
 Rancher randomly chooses a CentOS mirror for the ISO image URL. You may want to replace this URL with one that is closer or more appropriate for you.
