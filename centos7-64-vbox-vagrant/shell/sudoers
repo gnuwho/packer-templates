@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Add/set the sudoers stuff
 groupadd admin
 groupadd sudo

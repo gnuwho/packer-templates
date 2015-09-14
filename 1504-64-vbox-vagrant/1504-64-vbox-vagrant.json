@@ -1,5 +1,5 @@
 {
-	"description": "ubuntu LTS 1404 amd64 lubuntu build w some languages and editors",
+	"description": "minimal ubuntu LTS 1404 amd64 virtualbox vagrant build",
 	"min_packer_version": "0.7.0",
 	"builders": [
 		{
@@ -32,10 +32,10 @@
 			"guest_os_type": "Ubuntu_64",
 			"headless": true,
 			"http_directory": "http",
-			"iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
+			"iso_checksum": "6501c8545374665823384bbb6235f865108f56d8a30bbf69dd18df73c14ccb84",
 			"iso_checksum_type": "sha256",
-			"iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-			"output_directory": "../packer-boxes/1404-lubuntu-dev-vbox-vagrant",
+			"iso_url": "http://releases.ubuntu.com/15.04/ubuntu-15.04-server-amd64.iso",
+			"output_directory": "../packer-boxes/1504-64-vbox-vagrant",
 			"shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
@@ -53,36 +53,18 @@
 					"modifyvm",
 					"{{.Name}}",
 					"--memory",
-					"2048"
-				],
-				[
-					"modifyvm",
-					"{{.Name}}",
-					"--vram",
-					"128"
-				],
-				[
-					"modifyvm",
-					"{{.Name}}",
-					"--accelerate3d",
-					"on"
-				],
-				[
-					"modifyvm",
-					"{{.Name}}",
-					"--clipboard",
-					"bidirectional"
+					"1024"
 				]
 			],
 			"virtualbox_version_file": ".vbox_version",
-			"vm_name": "1404-lubuntu-dev-vbox-vagrant"
+			"vm_name": "1504-64-vbox-vagrant"
 		}
 	],
 	"post-processors": [
 		{
 			"compression_level": 9,
 			"keep_input_artifact": false,
-			"output": "1404-lubuntu-dev-vbox-vagrant.box",
+			"output": "1504-64-vbox-vagrant.box",
 			"type": "vagrant"
 		}
 	],
@@ -93,12 +75,6 @@
 				"shell/setup",
 				"shell/sudoers",
 				"shell/user_vagrant",
-				"shell/desktop",
-				"shell/browsers",
-				"shell/editors",
-				"shell/dev",
-				"shell/go",
-				"shell/timezone",
 				"shell/vbox",
 				"shell/cleanup"
 			],
