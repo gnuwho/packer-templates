@@ -7,5 +7,5 @@ mkdir /mnt/iso
 mount -o loop /home/vagrant/VBoxGuestAdditions.iso /mnt/iso
 sh /mnt/iso/VBoxLinuxAdditions.run
 umount /mnt/iso
-rmdir -f /mnt/iso
+rmdir --ignore-fail-on-empty /mnt/iso
 rm -f /home/vagrant/VBoxGuestAdditions.iso
