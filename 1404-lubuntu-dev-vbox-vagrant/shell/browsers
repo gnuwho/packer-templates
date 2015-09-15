@@ -7,6 +7,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y quassel
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 DEBIAN_FRONTEND=noninteractive apt-get install -y -f
+rm -f google-chrome-stable_current_amd64.deb
 
 # chromium
 DEBIAN_FRONTEND=noninteractive apt-get update
