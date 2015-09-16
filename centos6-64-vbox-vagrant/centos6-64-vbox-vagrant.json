@@ -13,7 +13,7 @@
 			"http_directory": "http",
 			"iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
 			"iso_checksum_type": "sha256",
-			"iso_url": "http://mirrors.usc.edu/pub/linux/distributions/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
+			"iso_url": "http://ftp.osuosl.org/pub/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
 			"output_directory": "../packer-boxes/centos6-64-vbox-vagrant",
 			"shutdown_command": "echo 'vagrant'|sudo -S shutdown -t5 -h now",
 			"ssh_password": "vagrant",
