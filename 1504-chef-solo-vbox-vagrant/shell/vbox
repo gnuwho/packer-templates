@@ -1,0 +1,12 @@
+#!/bin/bash
+# Install VirtualBox Guest Additions
+PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
+VBOX_VERSION=$(cat ~/.vbox_version)
+
+apt-get install -y xserver-xorg xserver-xorg-core
+mkdir /media/iso
+mount -o loop /home/vagrant/VBoxGuestAdditions.iso /media/iso
+sh /media/iso/VBoxLinuxAdditions.run
+umount /media/iso
+rmdir /media/iso
+rm -f /home/vagrant/VBoxGuestAdditions.iso
