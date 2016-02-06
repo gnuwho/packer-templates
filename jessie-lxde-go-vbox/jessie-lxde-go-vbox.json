@@ -1,6 +1,6 @@
 {
-	"description": "minimal debian jessie amd64 virtualbox vagrant build",
-	"min_packer_version": "0.7.0",
+	"description": "Debian jessie amd64 virtualbox vagrant build w a Go dev environment",
+	"min_packer_version": "0.8.0",
 	"builders": [
 		{
 			"boot_command": [
@@ -20,19 +20,21 @@
 				"<enter><wait>"
 			],
 			"boot_wait": "5s",
+			"communicator": "ssh",
 			"disk_size": 40000,
+			"guest_additions_path": "VBoxGuestAdditions.iso",
 			"guest_os_type": "Debian_64",
-			"headless": true,
+			"headless": false,
 			"http_directory": "http",
 			"iso_checksum": "dd25bcdde3c6ea5703cc0f313cde621b13d42ff7d252e2538a11663c93bf8654",
 			"iso_checksum_type": "sha256",
 			"iso_url": "http://cdimage.debian.org/debian-cd/8.3.0/amd64/iso-cd/debian-8.3.0-amd64-netinst.iso",
-			"output_directory": "../packer-boxes/jessie-lxde-go-vbox2",
+			"output_directory": "../packer-templates/jessie-lxde-go-vbox",
 			"shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
+			"ssh_timeout": "60m",
 			"ssh_username": "vagrant",
-			"ssh_wait_timeout": "60m",
 			"type": "virtualbox-iso",
 			"vboxmanage": [
 				[
@@ -67,7 +69,7 @@
 				]
 			],
 			"virtualbox_version_file": ".vbox_version",
-			"vm_name": "jessie-lxde-go-vbox2"
+			"vm_name": "jessie-lxde-go"
 		}
 	],
 	"provisioners": [
@@ -77,6 +79,7 @@
 				"shell/setup",
 				"shell/sudoers",
 				"shell/user_vagrant",
+				"shell/aliases",
 				"shell/timezone",
 				"shell/desktop",
 				"shell/browsers",

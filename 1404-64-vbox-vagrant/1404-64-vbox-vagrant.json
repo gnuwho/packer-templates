@@ -1,6 +1,6 @@
 {
-	"description": "minimal ubuntu LTS 1404 amd64 virtualbox vagrant build",
-	"min_packer_version": "0.7.0",
+	"description": "Basic Ubuntu 14.04 LTS amd64 virtualbox vagrant build",
+	"min_packer_version": "0.8.0",
 	"builders": [
 		{
 			"boot_command": [
@@ -28,19 +28,21 @@
 				"<enter><wait>"
 			],
 			"boot_wait": "5s",
+			"communicator": "ssh",
 			"disk_size": 40000,
+			"guest_additions_path": "VBoxGuestAdditions.iso",
 			"guest_os_type": "Ubuntu_64",
 			"headless": true,
 			"http_directory": "http",
 			"iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
 			"iso_checksum_type": "sha256",
 			"iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-			"output_directory": "../packer-boxes/1404-64-vbox-vagrant",
+			"output_directory": "../packer-templates/1404-64-vbox-vagrant",
 			"shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
+			"ssh_timeout": "60m",
 			"ssh_username": "vagrant",
-			"ssh_wait_timeout": "60m",
 			"type": "virtualbox-iso",
 			"vboxmanage": [
 				[
@@ -75,6 +77,7 @@
 				"shell/setup",
 				"shell/sudoers",
 				"shell/user_vagrant",
+				"shell/aliases",
 				"shell/vbox",
 				"shell/cleanup"
 			],

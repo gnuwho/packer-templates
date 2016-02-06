@@ -1,25 +1,27 @@
 {
-	"description": "minimal centos 7 x86_64 virtualbox vagrant build",
-	"min_packer_version": "0.7.0",
+	"description": "Basic Centos 7 x86_64 virtualbox vagrant build",
+	"min_packer_version": "0.8.0",
 	"builders": [
 		{
 			"boot_command": [
 				"<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
 			],
 			"boot_wait": "5s",
+			"communicator": "ssh",
 			"disk_size": 40000,
+			"guest_additions_path": "VBoxGuestAdditions.iso",
 			"guest_os_type": "RedHat_64",
 			"headless": true,
 			"http_directory": "http",
-			"iso_checksum": "7cf1ac8da13f54d6be41e3ccf228dc5bb35792f515642755ff4780d5714d4278",
+			"iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
 			"iso_checksum_type": "sha256",
-			"iso_url": "http://mirrors.umflint.edu/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
-			"output_directory": "../packer-boxes/centos7-64-vbox-vagrant",
+			"iso_url": "http://centos.osuosl.org/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
+			"output_directory": "../packer-templates/centos7-64-vbox-vagrant",
 			"shutdown_command": "echo 'vagrant'|sudo -S shutdown -t5 -h now",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
+			"ssh_timeout": "60m",
 			"ssh_username": "vagrant",
-			"ssh_wait_timeout": "60m",
 			"type": "virtualbox-iso",
 			"vboxmanage": [
 				[
@@ -54,6 +56,7 @@
 				"shell/setup",
 				"shell/sudoers",
 				"shell/user_vagrant",
+				"shell/aliases",
 				"shell/vbox",
 				"shell/cleanup"
 			],
