@@ -1,7 +1,9 @@
 # packer-templates
-This repo contains templates for [Packer](https://packer.io). 
+This repository contains [Packer](https://packer.io) templates. 
 
-These templates were generated using [Rancher](https://github.com/mohae/rancher).
+The templates were generated using [Rancher](https://github.com/mohae/rancher) and the [rancher-templates repository](https://github.com/moahe/rancher-templates).
+
+Each directory contains a template to build an artifact with Packer.  At minimum, the name describes the guest OS, the Packer builder, and the Packer post-processor used by the build template.
 
 Please see each template for details.
 
@@ -19,7 +21,6 @@ Create the desired artifact:
 
     cd packer-templates/1404-64-vbox-vagrant
     packer build 1404-64-vbox-vagrant.json
-
 
 ## Vagrant
 For templates that use the [Vagrant](https://vagrantup.com) post-processor, a simple Vagrantfile is included. 
