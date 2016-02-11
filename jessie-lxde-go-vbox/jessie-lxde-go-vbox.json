@@ -1,5 +1,5 @@
 {
-	"description": "Debian Jessie AMD64 Virtualbox build w a Go dev environment",
+	"description": "Debian jessie amd64 virtualbox vagrant build w a Go dev environment",
 	"min_packer_version": "0.8.0",
 	"builders": [
 		{
@@ -24,7 +24,7 @@
 			"disk_size": 40000,
 			"guest_additions_path": "VBoxGuestAdditions.iso",
 			"guest_os_type": "Debian_64",
-			"headless": false,
+			"headless": true,
 			"http_directory": "http",
 			"iso_checksum": "dd25bcdde3c6ea5703cc0f313cde621b13d42ff7d252e2538a11663c93bf8654",
 			"iso_checksum_type": "sha256",
@@ -37,6 +37,30 @@
 			"ssh_username": "vagrant",
 			"type": "virtualbox-iso",
 			"vboxmanage": [
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--accelerate3d",
+					"on"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--audio",
+					"dsound"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--audiocontroller",
+					"ac97"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--clipboard",
+					"bidirectional"
+				],
 				[
 					"modifyvm",
 					"{{.Name}}",
@@ -54,18 +78,6 @@
 					"{{.Name}}",
 					"--vram",
 					"128"
-				],
-				[
-					"modifyvm",
-					"{{.Name}}",
-					"--accelerate3d",
-					"on"
-				],
-				[
-					"modifyvm",
-					"{{.Name}}",
-					"--clipboard",
-					"bidirectional"
 				]
 			],
 			"virtualbox_version_file": ".vbox_version",
