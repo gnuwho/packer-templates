@@ -37,7 +37,7 @@
 			"iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
 			"iso_checksum_type": "sha256",
 			"iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
-			"output_directory": "../packer-templates/1404-64-vbox-vagrant",
+			"output_directory": "../packer-boxes/1404-64-vbox-vagrant/",
 			"shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
