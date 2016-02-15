@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "jessie-salt-vbox-vagrant.box"
+  config.vm.synced_folder "salt-masterless/saltbase/salt/roots/", "/srv"
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = true
+    # Customize the amount of memory on the VM:
+    # vb.memory = "512"
+  end
+  config.vm.provision "salt" do |salt|
+    salt.minion_config = "salt-masterless/saltbase/salt/minion"
+    salt.bootstrap_options = "-P -c /tmp"
+    salt.verbose = true
+    salt.run_highstate = true
+  end
+end
