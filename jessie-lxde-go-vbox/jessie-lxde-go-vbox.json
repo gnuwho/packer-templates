@@ -29,7 +29,7 @@
 			"iso_checksum": "dd25bcdde3c6ea5703cc0f313cde621b13d42ff7d252e2538a11663c93bf8654",
 			"iso_checksum_type": "sha256",
 			"iso_url": "http://cdimage.debian.org/debian-cd/8.3.0/amd64/iso-cd/debian-8.3.0-amd64-netinst.iso",
-			"output_directory": "../packer-boxes/jessie-lxde-go-vbox/",
+			"output_directory": "../packer-boxes/jessie-l-go-vbox/",
 			"shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
@@ -81,16 +81,16 @@
 				]
 			],
 			"virtualbox_version_file": ".vbox_version",
-			"vm_name": "jessie-lxde-go-vbox"
+			"vm_name": "jessie-l-go-vbox"
 		}
 	],
 	"provisioners": [
 		{
 			"execute_command": "echo 'vagrant'|sudo -E -S bash '{{.Path}}'",
 			"scripts": [
+				"shell/user_vagrant",
 				"shell/setup",
 				"shell/sudoers",
-				"shell/user_vagrant",
 				"shell/aliases",
 				"shell/timezone",
 				"shell/desktop",

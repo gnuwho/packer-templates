@@ -74,9 +74,9 @@
 		{
 			"execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
 			"scripts": [
+				"shell/user_vagrant",
 				"shell/setup",
 				"shell/sudoers",
-				"shell/user_vagrant",
 				"shell/aliases",
 				"shell/vbox",
 				"shell/cleanup"
