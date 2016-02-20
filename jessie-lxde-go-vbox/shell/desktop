@@ -11,3 +11,5 @@ apt-get install -y quassel
 apt-get purge -y xscreensaver
 # install sound
 apt-get install -y alsa-utils
+# add konsole
+apt-get -y install konsole
