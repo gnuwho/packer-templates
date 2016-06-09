@@ -40,7 +40,7 @@
 			"iso_checksum": "b8b172cbdf04f5ff8adc8c2c1b4007ccf66f00fc6a324a6da6eba67de71746f6",
 			"iso_checksum_type": "sha256",
 			"iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso",
-			"output_directory": "../packer-boxes/1604-lubuntu-dev-vbox-vagrant/",
+			"output_directory": "../packer-boxes/1604-lubuntu-dev-vbox/",
 			"shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
 			"ssh_password": "vagrant",
 			"ssh_port": 22,
@@ -92,15 +92,7 @@
 				]
 			],
 			"virtualbox_version_file": ".vbox_version",
-			"vm_name": "1604-lubuntu-dev-vbox-vagrant"
-		}
-	],
-	"post-processors": [
-		{
-			"compression_level": 9,
-			"keep_input_artifact": false,
-			"output": "1604-lubuntu-dev-vbox-vagrant.box",
-			"type": "vagrant"
+			"vm_name": "1604-lubuntu-dev-vbox"
 		}
 	],
 	"provisioners": [
